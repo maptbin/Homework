@@ -9,16 +9,31 @@ public class Book {
         this.authorName = authorName;
         this.text = "";
     }
-//геттер для названия книги
+
+    //геттер для названия книги
     public String getNameBook() {
         return this.nameBook;
     }
-//геттер для автора
-    public String getAuthorName(){
+
+    //геттер для автора
+    public String getAuthorName() {
         return this.authorName;
     }
-//геттер для текста = null, т.к. пустое значение выше
-    public String getText(){
+
+    //геттер для текста = null, т.к. пустое значение выше
+    public String getText() {
         return this.text;
+    }
+
+    public void setNameBook() {
+        this.nameBook = nameBook;
+    }
+
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 }

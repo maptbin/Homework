@@ -42,7 +42,7 @@ public class Main {
         System.out.println();
 
         System.out.println("takeBook с перегрузом");
-        goncharov.takeBook("Хроники Сиалы", "Медвежий угол");
+        goncharov.takeBook("Игра Эндера", "Властелин колец");
         System.out.println();
 
         System.out.println("printStatus");

@@ -59,11 +59,11 @@ public class Reader {
     //метод takeBook
     public void takeBook(Book book) {
         if (sumBook < arrayBooks.length) {
-            for (int k=0; k< arrayBooks.length; k++){
-                if (arrayBooks[k]==null){
-                    arrayBooks[k]=book;
+            for (int k = 0; k < arrayBooks.length; k++) {
+                if (arrayBooks[k] == null) {
+                    arrayBooks[k] = book;
                     sumBook++;
-                    System.out.println(getFullName()+" взял\\а книгу "+book.getNameBook());
+                    System.out.println(getFullName() + " взял\\а книгу " + book.getNameBook());
                     return;
                 }
             }
@@ -73,15 +73,11 @@ public class Reader {
         }
     }
 
-    public void takeBook(String... bookName) {
-        String nameList = "";
-        for (int k = 0; k < bookName.length; k++) {
-            nameList += bookName[k];
-            if (k < bookName.length - 1) {
-                nameList += ", ";
-            }
+    public void takeBook(String... bookNames) {
+        for (String bookName : bookNames) {
+            Book newBook = new Book(bookName, "Лабудибда");
+            takeBook(newBook);
         }
-        System.out.println(fullName + " взял книги: " + nameList);
     }
 
     //Метод returnBook
@@ -94,11 +90,7 @@ public class Reader {
             }
         }
         if (indexBook != -1) {
-            for (int k = indexBook; k < sumBook - 1; k++) {
-                arrayBooks[k] = arrayBooks[k + 1];
-
-            }
-            arrayBooks[sumBook - 1] = null;
+            arrayBooks[indexBook] = null;
             sumBook--;
             System.out.println(fullName + " вернул книгу " + bookName);
         } else {
