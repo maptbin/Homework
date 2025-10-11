@@ -59,9 +59,15 @@ public class Reader {
     //метод takeBook
     public void takeBook(Book book) {
         if (sumBook < arrayBooks.length) {
-            arrayBooks[sumBook] = book;
-            sumBook++;
-            System.out.println(fullName + " взял\\а книгу " + book.getNameBook());
+            for (int k=0; k< arrayBooks.length; k++){
+                if (arrayBooks[k]==null){
+                    arrayBooks[k]=book;
+                    sumBook++;
+                    System.out.println(getFullName()+" взял\\а книгу "+book.getNameBook());
+                    return;
+                }
+            }
+
         } else {
             System.out.println("Не может взять книгу, т.к. превышен лимит");
         }
