@@ -16,6 +16,46 @@ public class Reader {
         this.ticketNumber = ticketNumber;
     }
 
+    public String getFullName() {
+        return fullName;
+    }
+
+    public String getFaculty() {
+        return faculty;
+    }
+
+    public String getDateBirth() {
+        return dateBirth;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public int getTicketNumber() {
+        return ticketNumber;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public void setFaculty(String faculty) {
+        this.faculty = faculty;
+    }
+
+    public void setDateBirth(String dateBirth) {
+        this.dateBirth = dateBirth;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setTicketNumber(int ticketNumber) {
+        this.ticketNumber = ticketNumber;
+    }
+
     //метод takeBook
     public void takeBook(Book book) {
         if (sumBook < arrayBooks.length) {
