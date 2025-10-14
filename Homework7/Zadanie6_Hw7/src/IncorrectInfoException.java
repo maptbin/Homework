@@ -1,25 +1,24 @@
-public class IncorrectInfoException {
+public class IncorrectInfoException extends Exception {
     private String name;
-    private String allarm;
-    private int age;
+        private int age;
 
-    public IncorrectInfoException(String name, String allarm, int age){
-        this.name=name;
-        this.allarm=allarm;
-        this.age=age;
+    public IncorrectInfoException(String name, String message, int age) {
+        super(message);
+        this.name = name;
+        this.age = age;
     }
-    public String getName(){
+
+    public String getName() {
         return name;
     }
-    public String getAllarm(){
-        return allarm;
-    }
-    public int getAge(){
+
+    public int getAge() {
         return age;
     }
+
     @Override
-    public String toString(){
-        return "IncorrectInfoException: "+allarm+" Введенные ФИО: "+name+
-                " Введенный возраст: "+age;
+    public String toString() {
+        return "IncorrectInfoException: " + getMessage() + " Введенные ФИО: " + name +
+                " Введенный возраст: " + age;
     }
 }

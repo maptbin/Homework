@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /*
 Создайте новое исключение и назовите его IncorrectInfoException, добавьте в него поля для
@@ -11,10 +13,35 @@ import java.util.Scanner;
  */
 public class Main {
     public static void main(String[] args) {
-        Scanner sc=new Scanner(System.in);
-        String name ="^[а-яА-Я\\s]+$";
-        System.out.println("Введите ФИО: ");
-        String inputText = sc.nextLine();
+        Scanner sc = new Scanner(System.in);
+        String name;
+        int age;
 
+        try {
+            System.out.println("Введите ФИО: ");
+            name = sc.nextLine();
+            System.out.println("Введите возраст: ");
+            age = sc.nextInt();
+            //Проверка возраста
+            if (age < 0 || age > 100) {
+                throw new IncorrectInfoException(name, "Некоректный возраст", age);
+            }
+            //Проверка длины ФИО
+            if (name.length() > 200) {
+                throw new IncorrectInfoException(name, "Слишком длинное ФИО", age);
+            }
+            String punkRegex = ".*[.,!\\?&].*";
+            Pattern pattern = Pattern.compile(punkRegex);
+            Matcher matcher = pattern.matcher(name);
+            if (matcher.matches()) {
+                throw new IncorrectInfoException(name, "Недопустимые символы (.,!?& и тд)", age);
+            }
+            System.out.println("Все проверки пройдены");
+        } catch (IncorrectInfoException ex) {
+            System.out.println("Ошибка");
+            ex.toString();
+            System.out.println("Трассированный стек");
+            ex.printStackTrace();
+        }
     }
 }
