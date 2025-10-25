@@ -11,7 +11,7 @@ import java.util.Scanner;
 должен быть собран текст из всех файлов в каталоге. Например, в файле «some file 1.txt» записано «hello », а в
 файле «some file 2.txt» записано «world!», таким образом в файле result.txt будет записано «hello world!» */
 public class Main {
-    private static final String dirPath = "L:\\Intellij_IDEA\\Projects\\Homework\\Homework9\\Zadanie1_HW9";
+    private static final String dirPath = "E:\\Projects\\Homework\\Homework9\\Zadanie1_HW9";
     private static final String result = "result.txt";
 
 
@@ -19,7 +19,7 @@ public class Main {
 
         textFiles(dirPath);
 
-        
+
         recordFiles(dirPath, result);
     }
 
@@ -43,33 +43,38 @@ public class Main {
         }
     }
 
-    private static void recordFiles(String dirPath, String result) {
+    private static void recordFiles(String dirPath, String resultFileName) {
         System.out.println("Запись текста в файл result.txt");
         File sourceDir = new File(dirPath);
-        File resultFile = new File(sourceDir, result);
+        File resultFile = new File(sourceDir, resultFileName);
 
         try (FileWriter writer = new FileWriter(resultFile, false)) {
             if (!sourceDir.exists() || !sourceDir.isDirectory()) {
                 System.out.println("Каталог не найден");
+                return;
             }
             File[] files = sourceDir.listFiles();
             if (files != null) {
                 for (File file : files) {
-                    System.out.println("Чтение и запись файла: " + file);
-                    StringBuilder inside = new StringBuilder();
-                    try (Scanner sc = new Scanner(file)) {
-                        while (sc.hasNextLine()) {
-                            inside.append(sc.nextLine());
-                        }
-                    } catch (IOException ignored) {
+                    if (file.isFile() && file.getName().toLowerCase().endsWith(".txt") &&
+                            !file.getName().equals(resultFileName)) {
+                        System.out.println("Чтение и запись файла: " + file.getName());
+                        StringBuilder inside = new StringBuilder();
+                        try (Scanner sc = new Scanner(file)) {
+                            while (sc.hasNextLine()) {
+                                inside.append(sc.nextLine());
+                            }
+                        } catch (IOException ignored) {
 
+                        }
+                        writer.write(inside.toString());
+                        writer.write(" ");
                     }
-                    writer.write(inside.toString());
-                    writer.write(" ");
                 }
             }
         } catch (IOException ignored) {
 
         }
+        System.out.println("Сборка завершена");
     }
 }
